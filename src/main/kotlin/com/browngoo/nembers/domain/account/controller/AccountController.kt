@@ -11,7 +11,7 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("/accounts")
 class AccountController(
-    val accountService: AccountService
+    private val accountService: AccountService
 ) {
     @GetMapping("{id}")
     fun getAccount(@PathVariable id : Long) : AccountModel {

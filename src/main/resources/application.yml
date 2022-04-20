@@ -3,3 +3,4 @@ server:
 spring:
   jpa:
     open-in-view: false
+    defer-datasource-initialization: true

@@ -1,0 +1,2 @@
+insert into account(name, nick_name, email, created_at, updated_at, expired_at) values('lyon', 'lyonKing', 'lyon@kakao.com', now(), now(), null)
+insert into account(name, nick_name, email, created_at, updated_at, expired_at) values('apeach', 'pinkapeach', 'apeach@kakao.com', now(), now(), null)

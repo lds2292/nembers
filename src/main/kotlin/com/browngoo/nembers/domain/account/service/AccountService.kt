@@ -6,4 +6,5 @@ import com.browngoo.nembers.global.dto.AccountModel
 interface AccountService {
     fun createAccount(accountCreateModel: AccountCreateModel)
     fun getAccount(id: Long) : AccountModel
+    fun existsAccount(email: String) : Boolean
 }
