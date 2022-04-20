@@ -42,6 +42,10 @@ dependencies {
     runtimeOnly("com.h2database:h2")
     runtimeOnly("mysql:mysql-connector-java")
     /**
+     * 패스워드 암호화
+     */
+    implementation("org.connectbot:jbcrypt:1.0.2")
+    /**
      * Test
      */
     testImplementation("org.springframework.boot:spring-boot-starter-test")

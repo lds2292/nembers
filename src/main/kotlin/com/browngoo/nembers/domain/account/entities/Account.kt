@@ -1,5 +1,6 @@
 package com.browngoo.nembers.domain.account.entities
 
+import com.browngoo.nembers.global.validation.PasswordBCrypt
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
 import java.time.LocalDateTime
@@ -17,6 +18,8 @@ class Account(
     val nickName: String,
 
     val email : String? = null,
+    @Convert(converter = PasswordConvert::class)
+    val password : String,
 
     @CreationTimestamp
     val createdAt: LocalDateTime? = null,
@@ -27,4 +30,14 @@ class Account(
 ){
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id : Long? = null
+}
+
+class PasswordConvert : AttributeConverter<String, String>{
+    override fun convertToDatabaseColumn(attribute: String): String {
+        return PasswordBCrypt.fire(attribute)
+    }
+
+    override fun convertToEntityAttribute(dbData: String?): String {
+        return dbData ?: ""
+    }
 }

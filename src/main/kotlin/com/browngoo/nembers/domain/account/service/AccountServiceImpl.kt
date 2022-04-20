@@ -3,6 +3,7 @@ package com.browngoo.nembers.domain.account.service
 import com.browngoo.nembers.domain.account.repository.AccountRepository
 import com.browngoo.nembers.global.dto.AccountCreateModel
 import com.browngoo.nembers.global.dto.AccountModel
+import com.browngoo.nembers.global.dto.AccountSignModel
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.stereotype.Service
 
@@ -12,7 +13,7 @@ class AccountServiceImpl(
 ) : AccountService {
     override fun createAccount(accountCreateModel: AccountCreateModel) {
         if (existsAccount(accountCreateModel.email)) {
-            throw DataIntegrityViolationException("already account : ${accountCreateModel.email}")
+            throw DataIntegrityViolationException("이미 존재하는 이메일입니다")
         }
         accountRepository.save(accountCreateModel.toAccountEntity())
     }
@@ -24,5 +25,12 @@ class AccountServiceImpl(
 
     override fun existsAccount(email: String): Boolean {
         return accountRepository.existsByEmail(email)
+    }
+
+    override fun loginAccount(model: AccountSignModel) {
+        val account = accountRepository.findByEmail(model.email)
+            ?: throw NoSuchElementException("유저를 찾을 수 없습니다")
+
+        model.isComparePassword(account.password)
     }
 }
