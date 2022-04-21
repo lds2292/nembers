@@ -16,7 +16,7 @@ internal class AccountServiceTest constructor(
 ){
 
     private fun getExpectedAccount() = AccountCreateModel(
-        "lyon", "lyonking", "lycon@kakao.com"
+        "lyon", "lyonking", "lycon@kakao.com", "12345"
     )
 
     @Test

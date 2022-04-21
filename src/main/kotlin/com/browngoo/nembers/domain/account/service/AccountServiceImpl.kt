@@ -6,12 +6,14 @@ import com.browngoo.nembers.global.dto.AccountModel
 import com.browngoo.nembers.global.dto.AccountSignModel
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.stereotype.Service
+import org.springframework.validation.annotation.Validated
+import javax.validation.Valid
 
 @Service
 class AccountServiceImpl(
     val accountRepository: AccountRepository
 ) : AccountService {
-    override fun createAccount(accountCreateModel: AccountCreateModel) {
+    override fun createAccount(@Valid accountCreateModel: AccountCreateModel) {
         if (existsAccount(accountCreateModel.email)) {
             throw DataIntegrityViolationException("이미 존재하는 이메일입니다")
         }
